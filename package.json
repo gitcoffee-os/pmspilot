@@ -1,0 +1,61 @@
+{
+  "name": "pmspilot",
+  "version": "1.0.0",
+  "description": "PmsPilot 飞项 - 全平台团队协作与项目管理工具",
+  "author": "GitCoffee Team @GitCoffee",
+  "license": "Apache-2.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vue-tsc --noEmit && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "typecheck": "vue-tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
+    "@gitcoffee/api": "^1.0.0",
+    "@gitcoffee/auth": "^1.0.0",
+    "@gitcoffee/design-ui": "^1.0.0",
+    "@gitcoffee/pmspilot-ui": "^1.0.0",
+    "@gitcoffee/pmspilot-utils": "^1.0.0",
+    "@vueuse/core": "^12.0.0",
+    "dayjs": "^1.11.13",
+    "pinia": "^3.0.4",
+    "vue": "^3.5.26",
+    "vue-i18n": "^11.2.8",
+    "vue-router": "^4.6.4"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.17.0",
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.0",
+    "@types/node": "^22.10.1",
+    "@vitejs/plugin-vue": "^5.2.1",
+    "@vue/tsconfig": "^0.7.0",
+    "eslint": "^9.17.0",
+    "eslint-plugin-vue": "^9.32.0",
+    "prettier": "^3.4.2",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.2",
+    "vite": "^6.0.1",
+    "vue-eslint-parser": "^9.4.3",
+    "vue-tsc": "^2.2.0"
+  },
+  "keywords": [
+    "pmspilot",
+    "project-management",
+    "collaboration",
+    "teamwork"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gitcoffee/pmspilot.git"
+  },
+  "homepage": "https://github.com/gitcoffee/pmspilot#readme",
+  "bugs": {
+    "url": "https://github.com/gitcoffee/pmspilot/issues"
+  }
+}

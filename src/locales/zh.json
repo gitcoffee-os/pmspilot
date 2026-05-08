@@ -1,0 +1,54 @@
+{
+  "app": {
+    "name": "PmsPilot",
+    "slogan": "现代化项目管理平台"
+  },
+  "nav": {
+    "dashboard": "工作台",
+    "todo": "待办四象限",
+    "projects": "项目管理",
+    "calendar": "日程管理",
+    "gantt": "甘特图",
+    "docs": "文档库",
+    "stickyNote": "便签",
+    "bookmark": "书签",
+    "chat": "即时通讯",
+    "reports": "周报/日报"
+  },
+  "common": {
+    "save": "保存",
+    "cancel": "取消",
+    "confirm": "确认",
+    "delete": "删除",
+    "edit": "编辑",
+    "create": "创建",
+    "search": "搜索",
+    "filter": "筛选",
+    "loading": "加载中...",
+    "noData": "暂无数据",
+    "more": "更多"
+  },
+  "task": {
+    "title": "任务",
+    "create": "新建任务",
+    "edit": "编辑任务",
+    "delete": "删除任务",
+    "complete": "完成任务",
+    "dueDate": "截止日期",
+    "priority": {
+      "urgent": "紧急重要",
+      "important": "重要不紧急",
+      "normal": "紧急不重要",
+      "low": "不紧急不重要"
+    }
+  },
+  "project": {
+    "title": "项目",
+    "create": "新建项目",
+    "edit": "编辑项目",
+    "delete": "删除项目",
+    "members": "项目成员",
+    "progress": "项目进度",
+    "tasks": "项目任务"
+  }
+}

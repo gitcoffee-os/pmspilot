@@ -1,0 +1,52 @@
+{
+  "app": {
+    "name": "PmsPilot",
+    "slogan": "Modern Project Management Platform"
+  },
+  "nav": {
+    "dashboard": "Dashboard",
+    "todo": "Todo Quadrant",
+    "projects": "Projects",
+    "calendar": "Calendar",
+    "gantt": "Gantt Chart",
+    "docs": "Knowledge Base",
+    "chat": "Chat",
+    "reports": "Reports"
+  },
+  "common": {
+    "save": "Save",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "delete": "Delete",
+    "edit": "Edit",
+    "create": "Create",
+    "search": "Search",
+    "filter": "Filter",
+    "loading": "Loading...",
+    "noData": "No Data",
+    "more": "More"
+  },
+  "task": {
+    "title": "Task",
+    "create": "New Task",
+    "edit": "Edit Task",
+    "delete": "Delete Task",
+    "complete": "Complete Task",
+    "dueDate": "Due Date",
+    "priority": {
+      "urgent": "Urgent & Important",
+      "important": "Important",
+      "normal": "Urgent",
+      "low": "Normal"
+    }
+  },
+  "project": {
+    "title": "Project",
+    "create": "New Project",
+    "edit": "Edit Project",
+    "delete": "Delete Project",
+    "members": "Members",
+    "progress": "Progress",
+    "tasks": "Tasks"
+  }
+}
