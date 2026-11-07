@@ -3,7 +3,7 @@
 </p>
 <div align="center">
   <br />
-  <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">🚀 PmsPilot 飞项 全平台团队协作与项目管理工具 v1.1.0</h1>
+  <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">🚀 PmsPilot 项导 智能全平台团队协作与项目管理系统 v1.1.0</h1>
   <h3>让团队协作更简单，让项目管理更高效！</h3>
   <p>📋 四象限待办 • 📁 项目看板 • 📊 甘特图 • 💬 即时通讯 • 📚 知识库 • 📅 日程管理</p>
 </div>
@@ -22,7 +22,7 @@
 
 ## 项目简介 🖥️ 💻 📱
 
-📋 **PmsPilot 飞项** 是一款全平台团队协作与项目管理工具，旨在帮助团队高效协作、清晰管理任务、实时沟通。无论您是在办公室、出差途中还是居家办公，都能随时随地掌控项目进度。
+📋 **PmsPilot 项导** 是一款智能全平台团队协作与项目管理系统，旨在帮助团队高效协作、清晰管理任务、实时沟通。无论您是在办公室、出差途中还是居家办公，都能随时随地掌控项目进度。
 
 全面支持 **H5、微信小程序、iOS/Android APP、PC 客户端及桌面端** 等多端接入，让团队协作无处不在。
 
@@ -257,7 +257,7 @@
 
 ## 产品优势 ✨
 
-| 特性 | PmsPilot 飞项 | 传统项目管理工具 |
+| 特性 | PmsPilot 项导 | 传统项目管理工具 |
 |------|-------------|-------------|
 | 多端支持 | ✅ H5/小程序/APP/PC/桌面全覆盖 | 仅支持部分平台 |
 | 任务管理 | 📋 四象限 + 看板 + 甘特图多视图 | 单一视图模式 |
@@ -292,9 +292,9 @@ PmsPilot 只有通过开源协作才能蓬勃发展。秉持这一精神，我�
 - [合作咨询](https://pmspilot.exmay.com/docs/partner)
 
 ## 👥 加入社区
-PmsPilot 全平台团队协作与项目管理工具 交流群：
+PmsPilot 智能全平台团队协作与项目管理系统 交流群：
 
-<img src="https://cdn.exmay.com/exmay/upload/app/qrcode/gitcoffee/gitcoffee-wechat-qrcode.png" width="230px" title="PmsPilot 全平台团队协作与项目管理工具 微信群" />
+<img src="https://cdn.exmay.com/exmay/upload/app/qrcode/gitcoffee/gitcoffee-wechat-qrcode.png" width="230px" title="PmsPilot 智能全平台团队协作与项目管理系统 微信群" />
 
 (扫码添加微信，备注：PmsPilot，邀您加入群聊)
 
@@ -308,7 +308,7 @@ PmsPilot 全平台团队协作与项目管理工具 交流群：
 
 <div align="center">
 
-**🚀 PmsPilot 飞项** - 全平台团队协作与项目管理工具
+**🚀 PmsPilot 项导** - 智能全平台团队协作与项目管理系统
 
 让团队协作更简单，让项目管理更高效！ 🚀
 

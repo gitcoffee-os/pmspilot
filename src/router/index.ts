@@ -127,7 +127,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, _from, next) => {
-  document.title = to.meta.title ? `${to.meta.title} - PmsPilot` : 'PmsPilot 飞项';
+  document.title = to.meta.title ? `${to.meta.title} - PmsPilot` : 'PmsPilot 项导';
 
   const loggedIn = isLoggedIn();
 
