@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import type { Component } from 'vue';
 import { createRouter, createWebHistory } from 'vue-router';
 import {
   PmMainLayout,
@@ -37,127 +38,75 @@ import {
   PmStickyNoteView,
   PmBookmarkView,
   PmLoginView,
-  PmNotFound
-} from '@gitcoffee/pmspilot-ui';
+  PmNotFound,
+  flatNavItems
+} from '@gitcoffee-os/pmspilot-ui';
+import { isLoggedIn } from '@gitcoffee-os/pmspilot-utils/auth';
+
+/** 路由名 -> 页面组件 */
+const componentMap: Record<string, Component> = {
+  Dashboard: PmDashboard,
+  Todo: PmTodoView,
+  Tasks: PmTaskList,
+  Projects: PmProjectList,
+  Team: PmTeamView,
+  Calendar: PmCalendarView,
+  Gantt: PmGanttView,
+  Docs: PmDocsView,
+  Chat: PmChatView,
+  Report: PmReportView,
+  Contacts: PmContactsView,
+  StickyNote: PmStickyNoteView,
+  Bookmark: PmBookmarkView,
+  Note: PmNoteView,
+  DocEditor: PmDocEditorView,
+  FileManager: PmFileManagerView
+};
+
+/** 由导航配置生成的布局内路由 */
+const navRoutes = flatNavItems
+  .filter(item => componentMap[item.key])
+  .map(item => ({
+    path: item.path,
+    name: item.key,
+    component: componentMap[item.key],
+    meta: { title: item.label, subtitle: item.subtitle }
+  }));
+
+/** 不在导航菜单中、但需要布局的路由 */
+const extraRoutes = [
+  {
+    path: 'projects/:id',
+    name: 'ProjectDetail',
+    component: PmProjectDetail,
+    meta: { title: '项目详情' }
+  },
+  {
+    path: 'chat-room',
+    name: 'ChatRoom',
+    component: PmChatRoomView,
+    meta: { title: '聊天室' }
+  },
+  {
+    path: 'settings',
+    name: 'Settings',
+    component: PmSettingsView,
+    meta: { title: '设置' }
+  }
+];
 
 const routes = [
   {
     path: '/',
     component: PmMainLayout,
     children: [
+      ...navRoutes,
+      ...extraRoutes,
       {
-        path: '',
-        name: 'Dashboard',
-        component: PmDashboard,
-        meta: { title: '工作台' }
-      },
-      {
-        path: 'todo',
-        name: 'Todo',
-        component: PmTodoView,
-        meta: { title: '待办四象限' }
-      },
-      {
-        path: 'tasks',
-        name: 'Tasks',
-        component: PmTaskList,
-        meta: { title: '任务管理' }
-      },
-      {
-        path: 'projects',
-        name: 'Projects',
-        component: PmProjectList,
-        meta: { title: '项目管理' }
-      },
-      {
-        path: 'team',
-        name: 'Team',
-        component: PmTeamView,
-        meta: { title: '团队管理' }
-      },
-      {
-        path: 'projects/:id',
-        name: 'ProjectDetail',
-        component: PmProjectDetail,
-        meta: { title: '项目详情' }
-      },
-      {
-        path: 'calendar',
-        name: 'Calendar',
-        component: PmCalendarView,
-        meta: { title: '日程管理' }
-      },
-      {
-        path: 'gantt',
-        name: 'Gantt',
-        component: PmGanttView,
-        meta: { title: '甘特图' }
-      },
-      {
-        path: 'docs',
-        name: 'Docs',
-        component: PmDocsView,
-        meta: { title: '文档库' }
-      },
-      {
-        path: 'chat',
-        name: 'Chat',
-        component: PmChatView,
-        meta: { title: '即时通讯' }
-      },
-      {
-        path: 'chat-room',
-        name: 'ChatRoom',
-        component: PmChatRoomView,
-        meta: { title: '聊天室' }
-      },
-      {
-        path: 'report',
-        name: 'Report',
-        component: PmReportView,
-        meta: { title: '周报/日报' }
-      },
-      {
-        path: 'settings',
-        name: 'Settings',
-        component: PmSettingsView,
-        meta: { title: '设置' }
-      },
-      {
-        path: 'note',
-        name: 'Note',
-        component: PmNoteView,
-        meta: { title: '笔记' }
-      },
-      {
-        path: 'doc-editor',
-        name: 'DocEditor',
-        component: PmDocEditorView,
-        meta: { title: '文档编辑器' }
-      },
-      {
-        path: 'contacts',
-        name: 'Contacts',
-        component: PmContactsView,
-        meta: { title: '通讯录' }
-      },
-      {
-        path: 'file-manager',
-        name: 'FileManager',
-        component: PmFileManagerView,
-        meta: { title: '文件管理' }
-      },
-      {
-        path: 'sticky-note',
-        name: 'StickyNote',
-        component: PmStickyNoteView,
-        meta: { title: '便签' }
-      },
-      {
-        path: 'bookmark',
-        name: 'Bookmark',
-        component: PmBookmarkView,
-        meta: { title: '书签' }
+        path: ':pathMatch(.*)*',
+        name: 'NotFound',
+        component: PmNotFound,
+        meta: { title: '页面未找到' }
       }
     ]
   },
@@ -166,12 +115,6 @@ const routes = [
     name: 'Login',
     component: PmLoginView,
     meta: { title: '登录', public: true }
-  },
-  {
-    path: '/:pathMatch(.*)*',
-    name: 'NotFound',
-    component: PmNotFound,
-    meta: { title: '页面未找到' }
   }
 ];
 
@@ -183,24 +126,33 @@ const router = createRouter({
   }
 });
 
-router.beforeEach(async (to, from, next) => {
+router.beforeEach((to, _from, next) => {
   document.title = to.meta.title ? `${to.meta.title} - PmsPilot` : 'PmsPilot 飞项';
+
+  const loggedIn = isLoggedIn();
+
+  // 已登录用户访问登录页时直接进入系统
+  if (to.name === 'Login') {
+    if (loggedIn) {
+      const redirect = typeof to.query.redirect === 'string' ? to.query.redirect : '/';
+      next(redirect);
+      return;
+    }
+    next();
+    return;
+  }
 
   if (to.meta.public) {
     next();
     return;
   }
 
-  const { authManager } = await import('@gitcoffee/auth');
-
-  if (!authManager.isAuthenticated()) {
-    authManager.setUserInfo({
-      id: 'mock-user-001',
-      username: 'developer',
-      nickname: '开发者',
-      avatar: '',
-      email: 'dev@example.com'
+  if (!loggedIn) {
+    next({
+      name: 'Login',
+      query: to.fullPath === '/' ? undefined : { redirect: to.fullPath }
     });
+    return;
   }
 
   next();

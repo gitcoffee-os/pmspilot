@@ -19,18 +19,21 @@ import { createPinia } from 'pinia';
 import { createI18n } from 'vue-i18n';
 import App from './App.vue';
 import router from './router';
-import '@gitcoffee/pmspilot-ui/styles';
+import '@gitcoffee-os/pmspilot-ui/styles';
 
 // Import UI components and styles
-import DesignUI from '@gitcoffee/design-ui';
+import DesignUI from '@gitcoffee-os/design-ui';
 
-import { configureAuth, type UserInfo as AuthUserInfo } from '@gitcoffee/auth';
-import { initApiClient, setTokenGetter } from '@gitcoffee/api';
-import { getToken, getUserInfo, clearAuth } from '@gitcoffee/pmspilot-utils/auth';
+import { configureAuth, type UserInfo as AuthUserInfo } from '@gitcoffee-os/auth';
+import { initApiClient, setTokenGetter, mock } from '@gitcoffee-os/api';
+import { getToken, getUserInfo, clearAuth } from '@gitcoffee-os/pmspilot-utils/auth';
+import { useThemeStore, useAppSettingsStore, getDataSource, isMockSource, DebugPlugin } from '@gitcoffee-os/pmspilot-ui';
 
 // Import locales
 import zh from './locales/zh.json';
 import en from './locales/en.json';
+
+const { mockService } = mock;
 
 const i18n = createI18n({
   legacy: false,
@@ -41,6 +44,12 @@ const i18n = createI18n({
     en
   }
 });
+
+// 统一数据源：VITE_DATA_SOURCE=api | mock | local，未设置时开发环境默认 mock，生产默认 api
+const dataSource = getDataSource();
+if (isMockSource(dataSource)) {
+  mockService.enable({ delay: 200 });
+}
 
 setTokenGetter(() => getToken() || null);
 
@@ -70,7 +79,23 @@ configureAuth({
 
 const app = createApp(App);
 
-app.use(createPinia());
+// Dev 环境登录 bypass 标记：无需后端即可登录，便于本地预览内页
+if (typeof window !== 'undefined' && import.meta.env.DEV) {
+  (window as any).__PM_DEV_LOGIN__ = true;
+}
+
+const pinia = createPinia();
+
+app.use(pinia);
+app.use(DebugPlugin);
+
+// 主题与语言需要在挂载前初始化，避免首屏闪烁
+const themeStore = useThemeStore(pinia);
+themeStore.init();
+const settingsStore = useAppSettingsStore(pinia);
+settingsStore.init();
+i18n.global.locale.value = settingsStore.locale;
+
 app.use(router);
 app.use(i18n);
 app.use(DesignUI);

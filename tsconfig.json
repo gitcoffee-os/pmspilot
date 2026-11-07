@@ -6,7 +6,6 @@
     "lib": ["ES2020", "DOM", "DOM.Iterable"],
     "skipLibCheck": true,
     "moduleResolution": "bundler",
-    "customConditions": ["development"],
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -20,12 +19,12 @@
     "paths": {
       "~/*": ["./src/*"],
       "@/*": ["./src/*"],
-      "@gitcoffee/api/auth": ["../../packages/core/api/src/api/auth/index.ts"],
-      "@gitcoffee/api": ["../../packages/core/api/src/index.ts"],
-      "@gitcoffee/pmspilot-utils/auth": ["../../packages/utils/pmspilot-utils/src/auth/index.ts"],
-      "@gitcoffee/pmspilot-utils/avatar": ["../../packages/utils/pmspilot-utils/src/avatar/index.ts"],
-      "@gitcoffee/pmspilot-utils/date": ["../../packages/utils/pmspilot-utils/src/date/index.ts"],
-      "@gitcoffee/pmspilot-utils": ["../../packages/utils/pmspilot-utils/src/index.ts"]
+      "@gitcoffee-os/api/auth": ["../../packages/core/api/src/api/auth/index.ts"],
+      "@gitcoffee-os/api": ["../../packages/core/api/src/index.ts"],
+      "@gitcoffee-os/pmspilot-utils/auth": ["../../packages/utils/pmspilot-utils/src/auth/index.ts"],
+      "@gitcoffee-os/pmspilot-utils/avatar": ["../../packages/utils/pmspilot-utils/src/avatar/index.ts"],
+      "@gitcoffee-os/pmspilot-utils/date": ["../../packages/utils/pmspilot-utils/src/date/index.ts"],
+      "@gitcoffee-os/pmspilot-utils": ["../../packages/utils/pmspilot-utils/src/index.ts"]
     }
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "index.html"],

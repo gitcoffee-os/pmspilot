@@ -3,7 +3,7 @@
 </p>
 <div align="center">
   <br />
-  <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">📋 PmsPilot 飞项 全平台团队协作与项目管理工具 v1.0.0</h1>
+  <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">🚀 PmsPilot 飞项 全平台团队协作与项目管理工具 v1.1.0</h1>
   <h3>让团队协作更简单，让项目管理更高效！</h3>
   <p>📋 四象限待办 • 📁 项目看板 • 📊 甘特图 • 💬 即时通讯 • 📚 知识库 • 📅 日程管理</p>
 </div>
@@ -31,6 +31,12 @@
 ![pmspilot-homepage](https://pmspilot.exmay.com/docs/images/pmspilot_homepage.png)
 <br />
 ![pmspilot-homepage-dark](https://pmspilot.exmay.com/docs/images/pmspilot_homepage_dark.png)
+<br />
+![pmspilot-login-dark](https://pmspilot.exmay.com/docs/images/pmspilot_login_dark.png)
+<br />
+![pmspilot-workbench-dark](https://pmspilot.exmay.com/docs/images/pmspilot_workbench_dark.png)
+<br />
+![pmspilot-todo-dark](https://pmspilot.exmay.com/docs/images/pmspilot_todo_dark.png)
 <br />
 
 ## 核心功能模块 🚀
@@ -302,7 +308,7 @@ PmsPilot 全平台团队协作与项目管理工具 交流群：
 
 <div align="center">
 
-**📋 PmsPilot 飞项** - 全平台团队协作与项目管理工具
+**🚀 PmsPilot 飞项** - 全平台团队协作与项目管理工具
 
 让团队协作更简单，让项目管理更高效！ 🚀
 

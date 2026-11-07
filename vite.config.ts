@@ -19,6 +19,7 @@ import { resolve } from 'path';
 
 export default defineConfig(({ mode }) => {
   const isFastBuild = mode === 'fast';
+  const isDev = mode !== 'production' && mode !== 'fast';
 
   return {
     base: '/pms/',
@@ -29,15 +30,23 @@ export default defineConfig(({ mode }) => {
         '~/*': resolve(__dirname, 'src/*'),
         '@': resolve(__dirname, 'src'),
         '@/*': resolve(__dirname, 'src/*'),
-        '@gitcoffee/pmspilot-ui': resolve(__dirname, '../../packages/ui/pms-ui/dist/index.js'),
-        '@gitcoffee/pmspilot-ui/dist/index.css': resolve(__dirname, '../../packages/ui/pms-ui/dist/styles/index.css'),
-        '@gitcoffee/api': resolve(__dirname, '../../packages/core/api/src/index.ts'),
-        '@gitcoffee/api/auth': resolve(__dirname, '../../packages/core/api/src/api/auth/index.ts'),
-        '@gitcoffee/auth': resolve(__dirname, '../../packages/core/auth/src/index.ts'),
-        '@gitcoffee/pmspilot-utils': resolve(__dirname, '../../packages/utils/pmspilot-utils/src/index.ts'),
-        '@gitcoffee/pmspilot-utils/auth': resolve(__dirname, '../../packages/utils/pmspilot-utils/src/auth/index.ts'),
-        '@gitcoffee/pmspilot-utils/avatar': resolve(__dirname, '../../packages/utils/pmspilot-utils/src/avatar/index.ts'),
-        '@gitcoffee/pmspilot-utils/date': resolve(__dirname, '../../packages/utils/pmspilot-utils/src/date/index.ts')
+        // 子路径别名必须放在包名别名之前，否则会被包名前缀匹配吞掉
+        '@gitcoffee-os/pmspilot-ui/styles': isDev
+          ? resolve(__dirname, '../../packages/ui/pmspilot-ui/src/styles/index.css')
+          : resolve(__dirname, '../../packages/ui/pmspilot-ui/dist/index.css'),
+        '@gitcoffee-os/pmspilot-ui/dist/index.css': isDev
+          ? resolve(__dirname, '../../packages/ui/pmspilot-ui/src/styles/index.css')
+          : resolve(__dirname, '../../packages/ui/pmspilot-ui/dist/index.css'),
+        '@gitcoffee-os/api/auth': resolve(__dirname, '../../packages/core/api/src/api/auth/index.ts'),
+        '@gitcoffee-os/pmspilot-utils/auth': resolve(__dirname, '../../packages/utils/pmspilot-utils/src/auth/index.ts'),
+        '@gitcoffee-os/pmspilot-utils/avatar': resolve(__dirname, '../../packages/utils/pmspilot-utils/src/avatar/index.ts'),
+        '@gitcoffee-os/pmspilot-utils/date': resolve(__dirname, '../../packages/utils/pmspilot-utils/src/date/index.ts'),
+        '@gitcoffee-os/pmspilot-ui': isDev
+          ? resolve(__dirname, '../../packages/ui/pmspilot-ui/src/index.ts')
+          : resolve(__dirname, '../../packages/ui/pmspilot-ui/dist/index.js'),
+        '@gitcoffee-os/api': resolve(__dirname, '../../packages/core/api/src/index.ts'),
+        '@gitcoffee-os/auth': resolve(__dirname, '../../packages/core/auth/src/index.ts'),
+        '@gitcoffee-os/pmspilot-utils': resolve(__dirname, '../../packages/utils/pmspilot-utils/src/index.ts')
       }
     },
     build: {
@@ -62,11 +71,17 @@ export default defineConfig(({ mode }) => {
           inlineDynamicImports: false,
           manualChunks: isFastBuild
             ? undefined
-            : {
-                vendor: ['vue', 'vue-router', 'pinia', 'vue-i18n'],
-                ui: ['@gitcoffee/pmspilot-ui'],
-                utils: ['@gitcoffee/pmspilot-utils']
-              }
+            : (id) => {
+                if (id.includes('vue') || id.includes('vue-router') || id.includes('pinia') || id.includes('vue-i18n')) {
+                  return 'vendor';
+                }
+                if (id.includes('@gitcoffee-os/pmspilot-ui')) {
+                  return 'ui';
+                }
+                if (id.includes('@gitcoffee-os/pmspilot-utils')) {
+                  return 'utils';
+                }
+              },
         }
       },
       assetsDir: 'assets'
@@ -82,6 +97,11 @@ export default defineConfig(({ mode }) => {
       },
       proxy: {
         '/api': {
+          target: 'http://localhost:8080',
+          changeOrigin: true
+        },
+        // exmay-oa-engine 后端接口（/exmay/admin/api/oa/**）
+        '/exmay': {
           target: 'http://localhost:8080',
           changeOrigin: true
         }

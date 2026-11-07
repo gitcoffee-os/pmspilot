@@ -21,11 +21,28 @@
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue';
-import { useThemeStore, PmWatermark } from '@gitcoffee/pmspilot-ui';
+import { computed, onMounted, watch } from 'vue';
+import { useI18n } from 'vue-i18n';
+import { useThemeStore, useAppSettingsStore, PmWatermark } from '@gitcoffee-os/pmspilot-ui';
 import logoUrl from '/logo.svg?url';
 
 const themeStore = useThemeStore();
+const settingsStore = useAppSettingsStore();
+const { locale } = useI18n();
+
 const isDark = computed(() => themeStore.isDark);
 const logoSrc = logoUrl;
+
+onMounted(() => {
+  themeStore.init();
+  settingsStore.init();
+  locale.value = settingsStore.locale;
+});
+
+watch(
+  () => settingsStore.locale,
+  (value) => {
+    locale.value = value;
+  }
+);
 </script>
