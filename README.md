@@ -3,7 +3,7 @@
 </p>
 <div align="center">
   <br />
-  <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">🚀 PmsPilot 项导 智能全平台团队协作与项目管理系统 v1.1.0</h1>
+  <h1 align="center" style="margin: 30px 0 30px; font-weight: bold;">🚀 PmsPilot 项导 智能全平台团队协作与项目管理系统 v1.1.1</h1>
   <h3>让团队协作更简单，让项目管理更高效！</h3>
   <p>📋 四象限待办 • 📁 项目看板 • 📊 甘特图 • 💬 即时通讯 • 📚 知识库 • 📅 日程管理</p>
 </div>
