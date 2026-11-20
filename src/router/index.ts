@@ -19,25 +19,29 @@ import { createRouter, createWebHistory } from 'vue-router';
 import {
   PmMainLayout,
   PmDashboard,
-  PmTodoView,
+  PmTodo,
   PmTaskList,
   PmProjectList,
-  PmTeamView,
+  PmTeam,
   PmProjectDetail,
-  PmCalendarView,
-  PmGanttView,
-  PmDocsView,
-  PmChatView,
-  PmChatRoomView,
-  PmReportView,
-  PmSettingsView,
-  PmNoteView,
-  PmDocEditorView,
-  PmContactsView,
-  PmFileManagerView,
-  PmStickyNoteView,
-  PmBookmarkView,
-  PmLoginView,
+  PmCalendarPage,
+  PmGantt,
+  PmKnowledge,
+  PmKnowledgeEdit,
+  PmChat,
+  PmChatRoom,
+  PmReport,
+  PmSettings,
+  PmNote,
+  PmDocs,
+  PmDocEditor,
+  PmContacts,
+  PmFileManager,
+  PmMemo,
+  PmBookmark,
+  PmLogin,
+  PmRegister,
+  PmForgotPassword,
   PmNotFound,
   flatNavItems
 } from '@gitcoffee-os/pmspilot-ui';
@@ -46,21 +50,21 @@ import { isLoggedIn } from '@gitcoffee-os/pmspilot-utils/auth';
 /** 路由名 -> 页面组件 */
 const componentMap: Record<string, Component> = {
   Dashboard: PmDashboard,
-  Todo: PmTodoView,
+  Todo: PmTodo,
   Tasks: PmTaskList,
   Projects: PmProjectList,
-  Team: PmTeamView,
-  Calendar: PmCalendarView,
-  Gantt: PmGanttView,
-  Docs: PmDocsView,
-  Chat: PmChatView,
-  Report: PmReportView,
-  Contacts: PmContactsView,
-  StickyNote: PmStickyNoteView,
-  Bookmark: PmBookmarkView,
-  Note: PmNoteView,
-  DocEditor: PmDocEditorView,
-  FileManager: PmFileManagerView
+  Team: PmTeam,
+  Calendar: PmCalendarPage,
+  Gantt: PmGantt,
+  KnowledgeBase: PmKnowledge,
+  Chat: PmChat,
+  Report: PmReport,
+  Contacts: PmContacts,
+  Memo: PmMemo,
+  Bookmark: PmBookmark,
+  Note: PmNote,
+  Docs: PmDocs,
+  FileManager: PmFileManager
 };
 
 /** 由导航配置生成的布局内路由 */
@@ -84,13 +88,27 @@ const extraRoutes = [
   {
     path: 'chat-room',
     name: 'ChatRoom',
-    component: PmChatRoomView,
+    component: PmChatRoom,
     meta: { title: '聊天室' }
+  },
+  {
+    // 独立文档编辑器：不在菜单中，由 /pms/docs 列表页携带 id 进入
+    path: 'doc-editor',
+    name: 'DocEditor',
+    component: PmDocEditor,
+    meta: { title: '文档编辑器' }
+  },
+  {
+    // 知识库章节独立编辑页：不在菜单中，由 /pms/knowledge 列表页携带 knowledgeId+sectionId 进入
+    path: 'knowledge-edit',
+    name: 'KnowledgeEdit',
+    component: PmKnowledgeEdit,
+    meta: { title: '章节编辑' }
   },
   {
     path: 'settings',
     name: 'Settings',
-    component: PmSettingsView,
+    component: PmSettings,
     meta: { title: '设置' }
   }
 ];
@@ -113,8 +131,20 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: PmLoginView,
+    component: PmLogin,
     meta: { title: '登录', public: true }
+  },
+  {
+    path: '/register',
+    name: 'Register',
+    component: PmRegister,
+    meta: { title: '注册', public: true }
+  },
+  {
+    path: '/forgot-password',
+    name: 'ForgotPassword',
+    component: PmForgotPassword,
+    meta: { title: '找回密码', public: true }
   }
 ];
 

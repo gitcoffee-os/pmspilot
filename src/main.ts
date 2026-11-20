@@ -25,9 +25,10 @@ import '@gitcoffee-os/pmspilot-ui/styles';
 import DesignUI from '@gitcoffee-os/design-ui';
 
 import { configureAuth, type UserInfo as AuthUserInfo } from '@gitcoffee-os/auth';
-import { initApiClient, setTokenGetter, mock } from '@gitcoffee-os/api';
+import { initApiClient, updateApiHeaders, setTokenGetter, mock } from '@gitcoffee-os/api';
 import { getToken, getUserInfo, clearAuth } from '@gitcoffee-os/pmspilot-utils/auth';
-import { useThemeStore, useAppSettingsStore, getDataSource, isMockSource, DebugPlugin } from '@gitcoffee-os/pmspilot-ui';
+import { useThemeStore, useAppSettingsStore, getDataSource, isMockSource, createPmsFileApiConfig, DebugPlugin } from '@gitcoffee-os/pmspilot-ui';
+import { setFileKitConfig } from '@gitcoffee-os/file-kit';
 
 // Import locales
 import zh from './locales/zh.json';
@@ -54,9 +55,26 @@ if (isMockSource(dataSource)) {
 setTokenGetter(() => getToken() || null);
 
 initApiClient({
-  baseUrl: import.meta.env.VITE_API_BASE_URL || '',
+  // Vite dev server base 为 /pms/，API 请求需带同前缀才能命中 vite 代理（/pms/exmay、/pms/api）
+  baseUrl: import.meta.env.VITE_API_BASE_URL || '/pms',
+  // 后端要求携带 App-Id 请求头（默认应用名，可通过 VITE_APP_ID 覆盖）
+  headers: { 'App-Id': import.meta.env.VITE_APP_ID || 'pmspilot' },
   adapterType: 'fetch',
   autoDetect: true,
+});
+
+// 页面刷新时从本地恢复 Authorization（登录后由 LoginView 更新，登出时清除）
+const storedToken = getToken();
+if (storedToken) {
+  updateApiHeaders({ Authorization: `Bearer ${storedToken}` });
+}
+
+// 文件能力层（file-kit）初始化：统一文件契约 + 上传/预览组件全局配置
+// 上传走 /api/v1/upload/multipart（cookie session 鉴权，withCredentials 开启）
+setFileKitConfig({
+  apiConfig: createPmsFileApiConfig(),
+  paramConfig: { categoryId: 'folderId' },
+  withCredentials: true,
 });
 
 configureAuth({

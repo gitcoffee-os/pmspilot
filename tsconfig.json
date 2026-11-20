@@ -3,7 +3,11 @@
     "target": "ES2020",
     "useDefineForClassFields": true,
     "module": "ESNext",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "skipLibCheck": true,
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
@@ -17,16 +21,47 @@
     "noFallthroughCasesInSwitch": true,
     "baseUrl": ".",
     "paths": {
-      "~/*": ["./src/*"],
-      "@/*": ["./src/*"],
-      "@gitcoffee-os/api/auth": ["../../packages/core/api/src/api/auth/index.ts"],
-      "@gitcoffee-os/api": ["../../packages/core/api/src/index.ts"],
-      "@gitcoffee-os/pmspilot-utils/auth": ["../../packages/utils/pmspilot-utils/src/auth/index.ts"],
-      "@gitcoffee-os/pmspilot-utils/avatar": ["../../packages/utils/pmspilot-utils/src/avatar/index.ts"],
-      "@gitcoffee-os/pmspilot-utils/date": ["../../packages/utils/pmspilot-utils/src/date/index.ts"],
-      "@gitcoffee-os/pmspilot-utils": ["../../packages/utils/pmspilot-utils/src/index.ts"]
+      "~/*": [
+        "./src/*"
+      ],
+      "@/*": [
+        "./src/*"
+      ],
+      "@gitcoffee-os/api/auth": [
+        "../../packages/core/api/src/api/auth/index.ts"
+      ],
+      "@gitcoffee-os/api": [
+        "../../packages/core/api/src/index.ts"
+      ],
+      "@gitcoffee-os/pmspilot-utils/auth": [
+        "../../packages/utils/pmspilot-utils/src/auth/index.ts"
+      ],
+      "@gitcoffee-os/pmspilot-utils/avatar": [
+        "../../packages/utils/pmspilot-utils/src/avatar/index.ts"
+      ],
+      "@gitcoffee-os/pmspilot-utils/date": [
+        "../../packages/utils/pmspilot-utils/src/date/index.ts"
+      ],
+      "@gitcoffee-os/pmspilot-utils": [
+        "../../packages/utils/pmspilot-utils/src/index.ts"
+      ],
+      "@gitcoffee-os/pmspilot-authority-api": [
+        "../../packages/aircenter-engine/air-api/pmspilot-authority-api/src/index.ts"
+      ],
+      "@gitcoffee-os/agioffice": [
+        "../../packages/file-engine/agioffice/src/index.ts"
+      ]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "index.html"],
-  "exclude": ["node_modules", "dist"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.tsx",
+    "src/**/*.vue",
+    "index.html"
+  ],
+  "exclude": [
+    "node_modules",
+    "dist"
+  ]
 }
